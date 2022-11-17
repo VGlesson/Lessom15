@@ -8,58 +8,62 @@ namespace App1
 {
     interface ISeries
     {
-        void SetStart(int х);
+        void SetStart(int x);
         int GetNext();
         void Reset();
     }
-
     class ArithProgression : ISeries
     {
-        double first;
-        double step;
-        public ArithProgression(double first, double step) { this.first = first; this.step = step; }
-        public double GetElem(int n) { return first + step * (n - 1); }
-
+        int step;
+        int startValue;
+        int currrntValue;
         public int GetNext()
         {
-            throw new NotImplementedException();
+            currrntValue += step;
+            return currrntValue;
         }
-
-        public double GetSumm(int n) { return n * (first + GetElem(n)) / 2; }
 
         public void Reset()
         {
-            throw new NotImplementedException();
+            currrntValue = startValue;
         }
 
-        public void SetStart(int х)
+        public void SetStart(int x)
         {
-            throw new NotImplementedException();
+            startValue = x;
+            currrntValue = startValue;
+        }
+        public void SetStep(int s)
+        {
+            step = s;
         }
     }
-
     class GeomProgression : ISeries
-    {
-        double first;
-        double step;
-        public GeomProgression(double first, double step) { this.first = first; this.step = step; }
-        public double GetElem(int n) { return first * Math.Pow(step, n - 1); }
 
+    {
+        int step;
+        int startValue;
+        int currrntValue;
         public int GetNext()
         {
-            throw new NotImplementedException();
+            currrntValue *= step;
+            return currrntValue;
         }
-
-        public double GetSumm(int n) { return first * ((1 - Math.Pow(step, n)) / (1 - step)); }
 
         public void Reset()
         {
-            throw new NotImplementedException();
+            currrntValue = startValue;
         }
 
-        public void SetStart(int х)
+        public void SetStart(int x)
         {
-            throw new NotImplementedException();
+            startValue = x;
+            currrntValue = startValue;
+        }
+        public void SetStep(int s)
+        {
+            step = s;
         }
     }
 }
+
